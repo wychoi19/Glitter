@@ -1,2 +1,2 @@
 # Glitter
-Main Repository of Glitter
+Yonsei Univ. 1st Opensource Hackathon
