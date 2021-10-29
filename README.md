@@ -1,2 +1,2 @@
-# GlitterJ
-Main Repository of GlitterJ
+# Glitter
+Main Repository of Glitter
