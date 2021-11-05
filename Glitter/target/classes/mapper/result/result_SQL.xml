@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="result">
+	<insert id="save" parameterType="java.util.List">
+		INSERT INTO	tbl_result
+		VALUES
+		<foreach item="item" index="index" collection="list">
+		(
+			  #{item.cdCity}
+			, #{item.cdCityGu}
+			, #{item.cdDisease}
+			, #{item.ord}
+			, #{item.year}
+			, #{item.insDate}
+		)
+		</foreach>
+		
+	</insert>
+	
+	<select id="getCityTop3" parameterType="Object" resultType="hashmap">
+		SELECT 
+				CD_CITY cdCity
+                , B.CD_NAME cityNm
+				, CD_DISEASE cdDisease
+                , C.CD_NAME diseaseNm
+				, COUNT(*) cnt
+		FROM 	GLITTER_DB.TBL_RESULT A, GLITTER_DB.TBL_CODE B, GLITTER_DB.TBL_CODE C
+		WHERE 	B.CD_TYPE='1' 
+		AND 	A.CD_CITY = B.CD
+		AND		A.YEAR = #{year}
+        AND		A.CD_DISEASE = C.CD
+        AND		C.CD_TYPE = '3'
+		GROUP BY 	CD_CITY, CD_DISEASE
+		ORDER BY 	COUNT(*) DESC, CD_CITY, CD_DISEASE
+	</select>
+</mapper>
