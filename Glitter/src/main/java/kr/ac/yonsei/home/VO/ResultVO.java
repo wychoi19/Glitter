@@ -1,77 +1,85 @@
 package kr.ac.yonsei.home.VO;
 
 public class ResultVO {
-	private String cdCity;
-	private String cityNm;
-	private String cdCityGu;
-	private String cityGuNm;
-	private String cdDisease;
-	private String diseaseNm;
-	private String ord;
 	private String year;
-	private String insDate;
-	private String cnt;
+	private String personId;
+	private String instId; //º´¿øID
+	private String careId;
+	private String careName;
+	private String addrId;
+	private String addrName;
+	private String careAddrId;
+	private String careAddrName;
+	private String distance;
+	private String total;
 	
-	public String getCdCity() {
-		return cdCity;
-	}
-	public void setCdCity(String cdCity) {
-		this.cdCity = cdCity;
-	}
-	public String getCdCityGu() {
-		return cdCityGu;
-	}
-	public void setCdCityGu(String cdCityGu) {
-		this.cdCityGu = cdCityGu;
-	}
-	public String getCdDisease() {
-		return cdDisease;
-	}
-	public void setCdDisease(String cdDisease) {
-		this.cdDisease = cdDisease;
-	}
-	public String getOrd() {
-		return ord;
-	}
-	public void setOrd(String ord) {
-		this.ord = ord;
-	}
 	public String getYear() {
 		return year;
 	}
 	public void setYear(String year) {
 		this.year = year;
 	}
-	public String getInsDate() {
-		return insDate;
+	public String getPersonId() {
+		return personId;
 	}
-	public void setInsDate(String insDate) {
-		this.insDate = insDate;
+	public void setPersonId(String personId) {
+		this.personId = personId;
 	}
-	public String getCityNm() {
-		return cityNm;
+	public String getInstId() {
+		return instId;
 	}
-	public void setCityNm(String cityNm) {
-		this.cityNm = cityNm;
+	public void setInstId(String instId) {
+		this.instId = instId;
 	}
-	public String getCityGuNm() {
-		return cityGuNm;
+	public String getCareId() {
+		return careId;
 	}
-	public void setCityGuNm(String cityGuNm) {
-		this.cityGuNm = cityGuNm;
+	public void setCareId(String careId) {
+		this.careId = careId;
 	}
-	public String getDiseaseNm() {
-		return diseaseNm;
+	public String getCareName() {
+		return careName;
 	}
-	public void setDiseaseNm(String diseaseNm) {
-		this.diseaseNm = diseaseNm;
+	public void setCareName(String careName) {
+		this.careName = careName;
 	}
-	public String getCnt() {
-		return cnt;
+	public String getAddrId() {
+		return addrId;
 	}
-	public void setCnt(String cnt) {
-		this.cnt = cnt;
+	public void setAddrId(String addrId) {
+		this.addrId = addrId;
 	}
+	public String getAddrName() {
+		return addrName;
+	}
+	public void setAddrName(String addrName) {
+		this.addrName = addrName;
+	}
+	public String getCareAddrId() {
+		return careAddrId;
+	}
+	public void setCareAddrId(String careAddrId) {
+		this.careAddrId = careAddrId;
+	}
+	public String getCareAddrName() {
+		return careAddrName;
+	}
+	public void setCareAddrName(String careAddrName) {
+		this.careAddrName = careAddrName;
+	}
+	public String getDistance() {
+		return distance;
+	}
+	public void setDistance(String distance) {
+		this.distance = distance;
+	}
+	public String getTotal() {
+		return total;
+	}
+	public void setTotal(String total) {
+		this.total = total;
+	}
+	
 	
 	
 }

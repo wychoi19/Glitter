@@ -18,8 +18,31 @@ public class HomeDAO {
 		return sqlSession.insert("result.save", resultVO);
 	}
 
-	public List<ResultVO> getCityTop3(ResultVO resultVO) {
-		return sqlSession.selectList("result.getCityTop3", resultVO);
+	public List<ResultVO> getCityTopN(ResultVO resultVO) {
+		return sqlSession.selectList("result.getCityTopN", resultVO);
+	}
+
+	public List<ResultVO> getFewCareList(ResultVO resultVO) {
+		return sqlSession.selectList("result.getFewCareList", resultVO);
+	}
+
+	public List<ResultVO> getManyCareList(ResultVO resultVO) {
+		return sqlSession.selectList("result.getManyCareList", resultVO);
+	}
+
+	public List<ResultVO> getMoveDiseaseList(ResultVO resultVO) {
+		return sqlSession.selectList("result.getMoveDiseaseList", resultVO);
+	}
+
+	public ResultVO getMoveDistance(ResultVO resultVO) {
+		String str = sqlSession.selectOne("result.getMoveDistance", resultVO);
+		ResultVO resVO = new ResultVO();
+		resVO.setDistance(str);
+		return resVO;
+	}
+
+	public ResultVO getMoveCareList(ResultVO resultVO) {
+		return (ResultVO) sqlSession.selectList("result.getMoveCareList", resultVO);
 	}
 
 }

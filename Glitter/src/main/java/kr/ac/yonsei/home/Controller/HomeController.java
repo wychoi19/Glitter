@@ -73,21 +73,61 @@ public class HomeController {
 	/*
 	 * 지도가 초기상태일 경우 지역별로 top3개 질병 조회하기
 	 */
-	@RequestMapping(value = "/getCityTop3.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/getCityTopN.do", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> getCityTop3(ResultVO resultVO) {
+	public Map<String, Object> getCityTopN(ResultVO resultVO) {
 		Map<String, Object> result = new HashMap<String, Object>();
+
+		/* 병원이 적은 순 데이터*/
+		List<ResultVO> list = homeServiceImpl.getFewCareList(resultVO);
+		result.put("fewCareList", list);
+
+		/*병원이 많은 순 */
+		list = homeServiceImpl.getManyCareList(resultVO);
+		result.put("manyCareList", list);
+
+		/* 이동하는 질병 순서*/
+		list = homeServiceImpl.getMoveDiseaseList(resultVO);
+		result.put("moveDiseaseList", list);
+
+		/*  이동거리 평균 */
+		ResultVO vo = homeServiceImpl.getMoveDistance(resultVO);
+		result.put("moveDistance", vo);
 		
-		//DB에서 대도시별로 질병으로 인해 이동한 횟수가 몇 회인지 조회한다.
+		/* 지도에 표시할 데이터 */
 		
-		List<ResultVO> list = homeServiceImpl.getCityTop3(resultVO);
-		
-		
-		result.put("data", list);
+		result.put("result", true);
 		
 		return result; //성공인 경우 true;
 	}
-	
+
+	/*
+	 * 검색에 따른 상세조회
+	 */
+	@RequestMapping(value = "/getDetailCityTopN.do", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> getDetailCityTopN(ResultVO resultVO) {
+		Map<String, Object> result = new HashMap<String, Object>();
+
+		
+		/* 개별 조회에 대해서 */
+		/* (특정 지역에 대해서 ) 이동거리 평균 */
+		ResultVO list = homeServiceImpl.getMoveDistance(resultVO);
+		result.put("moveDistance", list);
+		
+		/* (특정 지역에 대해서 ) 이동하는 진료과목 top 5 */
+		homeServiceImpl.getMoveDiseaseList(resultVO);
+		result.put("moveDiseaseList", list);
+		
+		/* (특정 지역에 대해서 ) 원주에서 어디로 많이 가냐? */
+		list = homeServiceImpl.getMoveCareList(resultVO);
+		result.put("getMoveCareList", list);
+		
+
+		result.put("result", true);
+		
+		return result; //성공인 경우 true;
+	}
 	/*
 	 * 지도를 확대한 경우 지역에 따른 상세조회
 	 * 타지역 진료 병원/과목/평균이동거리

@@ -1,0 +1,197 @@
+*{
+    font-family: 'Noto Sans KR', sans-serif;
+    list-style: none;
+    text-decoration: none;
+    border-collapse: collapse;
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    color: black;
+}
+
+header{
+    height: 80px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+    /* background: green; */
+}
+main{
+    background: rgb(244, 244, 244);
+    padding-bottom: 30px;
+}
+main > div, ul{
+    background: #fff;
+}
+footer{
+    height: 300px;
+    background: rgb(60, 60, 60);
+}
+.nav{
+    margin: auto;
+    width: 1400px;
+    height: inherit;
+    /* background: rgba(172, 185, 202, 0.5); */
+}
+.logo{
+    position: relative;
+    top: 5px;
+    left: 15px;
+    font-size: 40px;
+    float: left;
+    /* background: red; */
+}
+.category{
+    float: right;
+    position: relative;
+    top: 25px;
+    right: 15px;
+}
+
+.intro{
+    height: 500px;
+    width: 1400px;
+    margin: auto;
+    background-image: url("../img/intro.jpg");
+    opacity: 0.7;
+}
+.intro_text{
+    position: relative;
+    top: 175px;
+    font-size: 50px;
+    text-align: center;
+    text-shadow:1px 1px 1px #000;
+    color: #fff;
+    /* background: blue; */
+}
+
+.statistics{
+    display: flex;
+    width: 1600px;
+    margin: 30px auto;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+}
+.statistics > li{
+    flex: 1;
+    height: 200px;
+    text-align: center;
+    /* background: blue; */
+}
+.statistics > li > div{
+    height: 80%;
+    margin-top: 5%;
+}
+.statistics > li:not(:last-child) > div{
+    border-right: 1px solid #d1d1d1;
+}
+.contents00{
+    font-size: 20px;
+    padding-top: 15px;
+}
+.ratio00{
+    font-size: 60px;
+    font-weight: bold;
+}
+.TOP3{
+    font-size: 22px;
+    font-weight: bold;
+    padding-top: 5px;
+}
+
+.analysis{
+    display: flex;
+    width: 1200px;
+    height: 900px;
+    margin: 30px auto 0;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+.map{
+    width: 50%;
+    height: 100%;
+}
+.map_search{
+    width: 90%;
+    height: 10%;
+    margin: 30px auto;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+.map_search {
+    display: flex;
+}
+.map_search > input{
+    padding-left: 10px;
+    margin: 15px 15px;
+    height: 60px;
+    width: 400px;
+    border: 0px;
+    outline: none;
+    float: left;
+    font-size: 20px;
+    color:rgb(60, 60, 60);
+}
+.map_search > button{
+    border: 2px;
+    outline: none;
+    padding: 10px;
+    margin: 15px 15px 15px 0;
+    border: 1px none black;
+    border-radius: 10%;
+    float: right;
+    cursor: pointer;
+    background: rgba(15, 141, 127, 0.4);
+    color: white;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.24);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+
+}
+.map_detail{
+    width: 90%;
+    height: 80%;
+    margin: auto;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+.graph{
+    width: 50%;
+    height: 100%;
+}
+.patients{
+    width: 90%;
+    height: 45%;
+    margin: 30px auto;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+.department{
+    width: 90%;
+    height: 45%;
+    margin: auto;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+
+.info {
+	position: relative;
+	top: 5px;
+	left: 5px;
+	border-radius: 6px;
+	border: 1px solid #ccc;
+	border-bottom: 2px solid #ddd;
+	font-size: 12px;
+	padding: 5px;
+	background: #fff;
+	list-style: none;
+	margin: 0;
+}
+
+.info:nth-of-type(n) {
+	border: 0;
+	box-shadow: 0px 1px 2px #888;
+}
+
+.info .label {
+	display: inline-block;
+	width: 50px;
+}
+
+.number {
+	font-weight: bold;
+	color: #00a0e9;
+}

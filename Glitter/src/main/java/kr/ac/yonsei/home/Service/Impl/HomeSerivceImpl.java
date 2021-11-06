@@ -28,8 +28,28 @@ public class HomeSerivceImpl implements HomeService {
 		return codeDAO.getCodeList(codeVO);
 	}
 
-	public List<ResultVO> getCityTop3(ResultVO resultVO) {
-		List<ResultVO> result = homeDAO.getCityTop3(resultVO);
+	public List<ResultVO> getCityTopN(ResultVO resultVO) {
+		List<ResultVO> result = homeDAO.getCityTopN(resultVO);
 		return result;
+	}
+
+	public List<ResultVO> getFewCareList(ResultVO resultVO) {
+		return homeDAO.getFewCareList(resultVO);
+	}
+
+	public List<ResultVO> getManyCareList(ResultVO resultVO) {
+		return homeDAO.getManyCareList(resultVO);
+	}
+
+	public List<ResultVO> getMoveDiseaseList(ResultVO resultVO) {
+		return homeDAO.getMoveDiseaseList(resultVO);
+	}
+
+	public ResultVO getMoveDistance(ResultVO resultVO) {
+		return homeDAO.getMoveDistance(resultVO);
+	}
+
+	public ResultVO getMoveCareList(ResultVO resultVO) {
+		return homeDAO.getMoveCareList(resultVO);
 	}
 }

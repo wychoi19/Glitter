@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="result">
-	<insert id="save" parameterType="java.util.List">
+	<!-- <insert id="save" parameterType="java.util.List">
 		INSERT INTO	tbl_result
 		VALUES
 		<foreach item="item" index="index" collection="list">
@@ -15,9 +15,9 @@
 		)
 		</foreach>
 		
-	</insert>
+	</insert> -->
 	
-	<select id="getCityTop3" parameterType="Object" resultType="hashmap">
+	<select id="getCityTopN" parameterType="Object" resultType="hashmap">
 		SELECT 
 				CD_CITY cdCity
                 , B.CD_NAME cityNm
@@ -33,4 +33,72 @@
 		GROUP BY 	CD_CITY, CD_DISEASE
 		ORDER BY 	COUNT(*) DESC, CD_CITY, CD_DISEASE
 	</select>
+	
+	<!-- 병원이 적은 순 리스트 -->
+	<select id="getFewCareList" parameterType="Object" resultType="hashmap">
+		SELECT 		A.ADDR_ID addrId
+					, B.CD_NAME addrName
+					, COUNT(*) cnt
+					, (SELECT COUNT(*) FROM TBL_RESULT) total
+		FROM		TBL_RESULT A, TBL_CODE B
+		WHERE		SUBSTR(ADDR_ID FROM 1 FOR 2) = B.CD
+		AND			B.CD_TYPE = '1'
+		GROUP BY 	SUBSTR(ADDR_ID FROM 1 FOR 2)
+		ORDER BY 	CNT DESC
+	</select>
+	
+	<!-- 병원이 많은 순 리스트 -->
+	<select id="getManyCareList" parameterType="Object" resultType="hashmap">
+		SELECT 		A.CARE_ADDR_ID addrId
+					, B.CD_NAME addrName
+					, COUNT(*) cnt
+					, (SELECT COUNT(*) FROM TBL_RESULT) total
+		FROM		TBL_RESULT A, TBL_CODE B
+		WHERE		SUBSTR(CARE_ADDR_ID FROM 1 FOR 2) = B.CD
+		AND			B.CD_TYPE = '1'
+		GROUP BY 	SUBSTR(CARE_ADDR_ID FROM 1 FOR 2)
+		ORDER BY 	CNT DESC
+	</select>
+	
+	<!-- 이동하는 질병 순위 -->
+	<select id="getMoveDiseaseList" parameterType="Object" resultType="hashmap">
+		SELECT 		A.CARE_ID careId
+					, B.CD_NAME careName
+					, COUNT(*) cnt
+					, (SELECT COUNT(*) FROM TBL_RESULT) total
+		FROM		TBL_RESULT A, TBL_CODE B
+		WHERE		A.CARE_ID = B.CD
+		AND			B.CD_TYPE = '3'
+		<if test="addrId!=null">
+		AND			ADDR_ID LIKE CONCAT('%',#{addrId},'%')
+		</if>
+		GROUP BY 	A.CARE_ID
+		ORDER BY 	CNT DESC
+	</select>
+	
+	<!-- 움직이는 거리 -->
+	<select id="getMoveDistance" parameterType="Object" resultType="Object">
+		SELECT		CAST(AVG(DISTANCE) AS CHAR(10)) distance
+		FROM		TBL_RESULT
+		<if test="addrId!=null">
+		WHERE		ADDR_ID LIKE CONCAT('%',#{addrId},'%')
+		</if>
+	</select>
+	
+	<!-- 특정 지역에서 어느 지역으로 많이 이동하는 지에 대한 정보 -->
+	<select id="getMoveCareList" parameterType="Object" resultType="hashmap">
+		SELECT 		A.CARE_ADDR_ID addrId
+					, B.CD_NAME addrName
+					, COUNT(*) cnt
+		FROM		TBL_RESULT A, TBL_CODE B
+		WHERE		SUBSTR(CARE_ADDR_ID FROM 1 FOR 2) = B.CD
+		AND			B.CD_TYPE = '1'
+		<if test="addrId!=null">
+		AND			ADDR_ID LIKE CONCAT('%',#{addrId},'%')
+		AND			CARE_ADDR_ID NOT LIKE CONCAT('%',#{addrId},'%')
+		</if>
+		GROUP BY 	SUBSTR(CARE_ADDR_ID FROM 1 FOR 2)
+		ORDER BY 	CNT DESC
+	</select>
+	
 </mapper>
