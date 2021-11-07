@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="result">
-	<!-- <insert id="save" parameterType="java.util.List">
+	<insert id="save" parameterType="java.util.List">
 		INSERT INTO	tbl_result
 		VALUES
-		<foreach item="item" index="index" collection="list">
+		<foreach item="item" index="index" collection="list" separator="," >
 		(
-			  #{item.cdCity}
-			, #{item.cdCityGu}
-			, #{item.cdDisease}
-			, #{item.ord}
-			, #{item.year}
-			, #{item.insDate}
+			  #{item.year}
+			, #{item.personId}
+			, #{item.instId}
+			, #{item.careId}
+			, #{item.addrId}
+			, #{item.careAddrId}
+			, #{item.distance}
 		)
 		</foreach>
 		
-	</insert> -->
+	</insert> 
 	
 	<!-- <select id="getCityTopN" parameterType="Object" resultType="hashmap">
 		SELECT 
@@ -101,4 +102,9 @@
 		ORDER BY 	CNT DESC
 	</select>
 	
+	<!-- 데이터 존재여부 체크 -->
+	<select id="getResultCount" resultType="integer">
+		SELECT 		COUNT(*) cnt
+		FROM		TBL_RESULT A
+	</select>
 </mapper>

@@ -44,5 +44,9 @@ public class HomeDAO {
 	public List<ResultVO> getMoveCareList(ResultVO resultVO) {
 		return sqlSession.selectList("result.getMoveCareList", resultVO);
 	}
+
+	public int getResultCount() {
+		return sqlSession.selectOne("result.getResultCount");
+	}
 	
 }
