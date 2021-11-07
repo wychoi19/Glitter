@@ -47,7 +47,7 @@ request.setCharacterEncoding("UTF-8");
 	<main>
 		<div class="intro">
 			<h1 class="intro_text">
-				Analysis of the shortage<br>of local hospitals
+				Analysis of the shortage<br>of local hospitals    
 			</h1>
 		</div>
 	</main>
