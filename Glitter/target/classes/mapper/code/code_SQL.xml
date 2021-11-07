@@ -11,4 +11,11 @@
 		WHERE	CD_TYPE = #{cdType}
 		
 	</select>
+	
+	<!-- 거리 계산을 위한 전체데이터의 주소 조회 -->
+	<select id="getResultCalList" parameterType="Object" resultType="hashmap">
+		SELECT 		CD cd
+					, CD_NAME cdName
+		FROM		TBL_LOCATION
+	</select>
 </mapper>

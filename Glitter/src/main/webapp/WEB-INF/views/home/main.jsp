@@ -19,10 +19,12 @@ request.setCharacterEncoding("UTF-8");
 		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7801d10688d1111d9032248b5c5072c5&libraries=services,clusterer,drawing"></script>
 		<!-- 카카오맵 api -->
 		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/js/select2.min.js"></script>
 		
 		<script src="/resources/js/chart.js"></script>
 		<script src="/resources/js/index.js"></script>
 		<script src="/resources/js/map.js"></script>
+		<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
     </head>
 
 <style>
@@ -88,9 +90,9 @@ request.setCharacterEncoding("UTF-8");
             <div class="analysis">
                 <div class="map">
             		<div class="map_search">
-                         <input type="text"  id="autoCompleteText" placeholder="검색 지역 입력">
+                         <select id="autoCompleteText" style="height:50px;"></select>  
                          <button id="src">Search</button>
-                         <button id="rst">Refresh</button>
+                         <button id="rst" onclick="selectInit();">Refresh</button>
                     </div>
                     <div class="map_detail" id="map">
 
@@ -103,9 +105,10 @@ request.setCharacterEncoding("UTF-8");
                     <canvas class="patients" id="chart2">
 
                     </canvas>
-                    <canvas class="patients" id="chart3" style="display:none;">
-
-                    </canvas>
+                    <div class="patients_text" id="chart3" style="display:none;">
+                    </div>
+                    
+                    
                 </div>
             </div>
         </main>

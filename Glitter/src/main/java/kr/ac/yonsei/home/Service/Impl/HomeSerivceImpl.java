@@ -1,10 +1,17 @@
 package kr.ac.yonsei.home.Service.Impl;
 
+import java.util.HashMap;
 import java.util.List;
 import javax.annotation.Resource;
 
+import org.apache.http.HttpResponse;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import kong.unirest.JsonNode;
+import kong.unirest.Unirest;
 import kr.ac.yonsei.code.DAO.CodeDAO;
 import kr.ac.yonsei.home.Dao.HomeDAO;
 import kr.ac.yonsei.home.Service.HomeService;
@@ -49,7 +56,36 @@ public class HomeSerivceImpl implements HomeService {
 		return homeDAO.getMoveDistance(resultVO);
 	}
 
-	public ResultVO getMoveCareList(ResultVO resultVO) {
+	public List<ResultVO> getMoveCareList(ResultVO resultVO) {
 		return homeDAO.getMoveCareList(resultVO);
 	}
+
+	/*
+	 * public void getResultCalList(ResultVO resultVO) { List<CodeVO> resVO =
+	 * codeDAO.getResultCalList(resultVO); for(CodeVO tmpVO : resVO) {
+	 * 
+	 * String APIKey = "ba0f8db0452ad4bf3ccde980430acfb1"; String address =
+	 * tmpVO.getCdName();
+	 * 
+	 * HashMap<String, Object> map = new HashMap<>(); //결과를 담을 map
+	 * 
+	 * try { String apiURL =
+	 * "https://dapi.kakao.com/v2/local/search/address.json?query=" +
+	 * URLEncoder.encode(address, "UTF-8");
+	 * 
+	 * kong.unirest.HttpResponse<JsonNode> response =
+	 * Unirest.get(apiURL).header("Authorization", APIKey).asJson();
+	 * 
+	 * //받아온 데이터를 json으로 파싱 ObjectMapper objectMapper = new ObjectMapper();
+	 * objectMapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY,
+	 * true);
+	 * 
+	 * //vo에 세팅 KakaoGeoRes bodyJson =
+	 * objectMapper.readValue(response.getBody().toString(), KakaoGeoRes.class);
+	 * 
+	 * bodyJson.getDocuments().get(0).getX() bodyJson.getDocuments().get(0).getY()
+	 * 
+	 * } }
+	 */
+	 
 }

@@ -68,6 +68,36 @@ public class HomeController {
 	/*
 	 * 메인화면에서 통계자료 조회하기
 	 */
+
+	/*
+	 * 검색에 따른 상세조회
+	 */
+	@RequestMapping(value = "/getDetailCityTopN.do", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> getDetailCityTopN(ResultVO resultVO) {
+		Map<String, Object> result = new HashMap<String, Object>();
+
+		
+		/* 개별 조회에 대해서 */
+		/* (특정 지역에 대해서 ) 이동거리 평균 */
+		ResultVO vo = homeServiceImpl.getMoveDistance(resultVO);
+		result.put("moveDistance", vo);
+		
+		/* (특정 지역에 대해서 ) 이동하는 진료과목 top 5 */
+		List<ResultVO> list = homeServiceImpl.getMoveDiseaseList(resultVO);
+		result.put("moveDiseaseList", list);
+		
+		/* (특정 지역에 대해서 ) 원주에서 어디로 많이 가냐? */
+		list = homeServiceImpl.getMoveCareList(resultVO);
+		result.put("getMoveCareList", list);
+		
+
+		result.put("result", true);
+		
+		return result; //성공인 경우 true;
+	}
+	
+
 	
 	
 	/*
@@ -82,6 +112,21 @@ public class HomeController {
 		List<ResultVO> list = homeServiceImpl.getFewCareList(resultVO);
 		result.put("fewCareList", list);
 
+		/* 지도에 표시할 데이터 */
+		//-> 병원이 작은 순 데이터에서 상위5개는 어떤 질병으로 이동하는지에 대한 정보
+		HashMap<String, Object> mapList = new HashMap<String, Object>();
+		for(int i = 0 ; i < 5 ; i ++) {
+			//list.get(i).get
+			String tmpAddrName = list.get(i).getAddrName();
+			list.get(i).setAddrName(null);
+			List<ResultVO> tmpList = homeServiceImpl.getMoveDiseaseList(list.get(i));
+			list.get(i).setAddrName(tmpAddrName);
+			mapList.put(tmpAddrName, tmpList);
+			
+		}
+		System.out.println(mapList.toString());
+		result.put("mapList", mapList);
+		
 		/*병원이 많은 순 */
 		list = homeServiceImpl.getManyCareList(resultVO);
 		result.put("manyCareList", list);
@@ -94,57 +139,26 @@ public class HomeController {
 		ResultVO vo = homeServiceImpl.getMoveDistance(resultVO);
 		result.put("moveDistance", vo);
 		
-		/* 지도에 표시할 데이터 */
 		
 		result.put("result", true);
 		
+		System.out.println("성공반환!!!");
 		return result; //성공인 경우 true;
 	}
-
+	
 	/*
-	 * 검색에 따른 상세조회
+	 * 지역코드에따라서 위경도 계산 후 거리계산
 	 */
-	@RequestMapping(value = "/getDetailCityTopN.do", method = RequestMethod.POST)
-	@ResponseBody
-	public Map<String, Object> getDetailCityTopN(ResultVO resultVO) {
-		Map<String, Object> result = new HashMap<String, Object>();
-
-		
-		/* 개별 조회에 대해서 */
-		/* (특정 지역에 대해서 ) 이동거리 평균 */
-		ResultVO list = homeServiceImpl.getMoveDistance(resultVO);
-		result.put("moveDistance", list);
-		
-		/* (특정 지역에 대해서 ) 이동하는 진료과목 top 5 */
-		homeServiceImpl.getMoveDiseaseList(resultVO);
-		result.put("moveDiseaseList", list);
-		
-		/* (특정 지역에 대해서 ) 원주에서 어디로 많이 가냐? */
-		list = homeServiceImpl.getMoveCareList(resultVO);
-		result.put("getMoveCareList", list);
-		
-
-		result.put("result", true);
-		
-		return result; //성공인 경우 true;
-	}
+	
 	/*
-	 * 지도를 확대한 경우 지역에 따른 상세조회
-	 * 타지역 진료 병원/과목/평균이동거리
-	 */
-	/*
-	 * @RequestMapping(value = "/getCityDetail.do", method = RequestMethod.POST)
+	 * @RequestMapping(value = "/calDistance.do", method = RequestMethod.POST)
 	 * 
-	 * @ResponseBody public Map<String, Object> getCityDetail(ResultVO resultVO) {
+	 * @ResponseBody public Map<String, Object> calDistance(ResultVO resultVO) {
 	 * Map<String, Object> result = new HashMap<String, Object>();
 	 * 
-	 * logger.info("getCodeList.do"+codeVO.getCdType());
 	 * 
-	 * List<CodeVO> list = homeServiceImpl.getCodeList(codeVO);
-	 * logger.info("list : "+list); result.put("data", list); result.put("result",
-	 * true);
+	 * homeServiceImpl.getResultCalList(resultVO);
 	 * 
 	 * return result; //성공인 경우 true; }
 	 */
-	
 }

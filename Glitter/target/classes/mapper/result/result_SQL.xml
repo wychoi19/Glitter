@@ -17,7 +17,7 @@
 		
 	</insert> -->
 	
-	<select id="getCityTopN" parameterType="Object" resultType="hashmap">
+	<!-- <select id="getCityTopN" parameterType="Object" resultType="hashmap">
 		SELECT 
 				CD_CITY cdCity
                 , B.CD_NAME cityNm
@@ -32,10 +32,10 @@
         AND		C.CD_TYPE = '3'
 		GROUP BY 	CD_CITY, CD_DISEASE
 		ORDER BY 	COUNT(*) DESC, CD_CITY, CD_DISEASE
-	</select>
+	</select> -->
 	
 	<!-- 병원이 적은 순 리스트 -->
-	<select id="getFewCareList" parameterType="Object" resultType="hashmap">
+	<select id="getFewCareList" parameterType="kr.ac.yonsei.home.VO.ResultVO" resultType="kr.ac.yonsei.home.VO.ResultVO">
 		SELECT 		A.ADDR_ID addrId
 					, B.CD_NAME addrName
 					, COUNT(*) cnt
@@ -48,7 +48,7 @@
 	</select>
 	
 	<!-- 병원이 많은 순 리스트 -->
-	<select id="getManyCareList" parameterType="Object" resultType="hashmap">
+	<select id="getManyCareList" parameterType="kr.ac.yonsei.home.VO.ResultVO" resultType="kr.ac.yonsei.home.VO.ResultVO">
 		SELECT 		A.CARE_ADDR_ID addrId
 					, B.CD_NAME addrName
 					, COUNT(*) cnt
@@ -61,7 +61,7 @@
 	</select>
 	
 	<!-- 이동하는 질병 순위 -->
-	<select id="getMoveDiseaseList" parameterType="Object" resultType="hashmap">
+	<select id="getMoveDiseaseList" parameterType="kr.ac.yonsei.home.VO.ResultVO" resultType="kr.ac.yonsei.home.VO.ResultVO">
 		SELECT 		A.CARE_ID careId
 					, B.CD_NAME careName
 					, COUNT(*) cnt
@@ -77,7 +77,7 @@
 	</select>
 	
 	<!-- 움직이는 거리 -->
-	<select id="getMoveDistance" parameterType="Object" resultType="Object">
+	<select id="getMoveDistance" parameterType="kr.ac.yonsei.home.VO.ResultVO" resultType="Object">
 		SELECT		CAST(AVG(DISTANCE) AS CHAR(10)) distance
 		FROM		TBL_RESULT
 		<if test="addrId!=null">
@@ -86,7 +86,7 @@
 	</select>
 	
 	<!-- 특정 지역에서 어느 지역으로 많이 이동하는 지에 대한 정보 -->
-	<select id="getMoveCareList" parameterType="Object" resultType="hashmap">
+	<select id="getMoveCareList" parameterType="kr.ac.yonsei.home.VO.ResultVO" resultType="kr.ac.yonsei.home.VO.ResultVO">
 		SELECT 		A.CARE_ADDR_ID addrId
 					, B.CD_NAME addrName
 					, COUNT(*) cnt

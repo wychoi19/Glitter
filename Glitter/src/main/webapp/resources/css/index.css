@@ -154,9 +154,35 @@ footer{
 }
 .patients{
     width: 90%;
-    height: 45%;
+    height: 20%;
     margin: 30px auto;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+.patients_text{
+    width: 90%;
+    height: 20%;
+    margin: 30px auto;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+	text-align:center;
+	font-size:20;
+	font-weight: bold;
+	font-family:'Noto Sans KR';
+	padding-top:1%;
+	color:#555555;
+}
+
+.patients_text > div{
+	text-align:center;
+	font-size:20;
+	font-weight: bold;
+	font-family:'Noto Sans KR';
+	padding-top:1%;
+	color:#555555;
+}
+
+.patients_text > div.big{
+	font-size:40;
 }
 
 .department{
@@ -194,4 +220,19 @@ footer{
 .number {
 	font-weight: bold;
 	color: #00a0e9;
+}
+
+select {
+	width:400px;
+	margin-top:30px;
+	height:30px;
+	 height: 35px !important;
+}
+
+.select2-selection__arrow, .select2-container--default .select2-selection--single{
+	margin:10%
+}
+
+.close{
+	float:right;
 }

@@ -170,6 +170,28 @@
 		    <artifactId>log4jdbc-remix</artifactId>
 		    <version>0.2.7</version>
 		</dependency>
+		
+		<!-- 카카오맵 REST API사용을 위한 추가 -->
+		<!-- httpcore -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore</artifactId>
+            <version>4.4.6</version>
+        </dependency>
+ 
+        <!-- httpclient -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.2</version>
+        </dependency>
+        
+		<!-- Pull in as a traditional dependency -->
+		<dependency>
+		    <groupId>com.konghq</groupId>
+		    <artifactId>unirest-java</artifactId>
+		    <version>3.7.04</version>
+		</dependency>
 	</dependencies>
     <build>
         <plugins>

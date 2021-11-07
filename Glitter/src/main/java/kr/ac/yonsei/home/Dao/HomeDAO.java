@@ -33,7 +33,6 @@ public class HomeDAO {
 	public List<ResultVO> getMoveDiseaseList(ResultVO resultVO) {
 		return sqlSession.selectList("result.getMoveDiseaseList", resultVO);
 	}
-
 	public ResultVO getMoveDistance(ResultVO resultVO) {
 		String str = sqlSession.selectOne("result.getMoveDistance", resultVO);
 		ResultVO resVO = new ResultVO();
@@ -41,8 +40,9 @@ public class HomeDAO {
 		return resVO;
 	}
 
-	public ResultVO getMoveCareList(ResultVO resultVO) {
-		return (ResultVO) sqlSession.selectList("result.getMoveCareList", resultVO);
+	/* 어디로 많이 이동했는가? */
+	public List<ResultVO> getMoveCareList(ResultVO resultVO) {
+		return sqlSession.selectList("result.getMoveCareList", resultVO);
 	}
-
+	
 }

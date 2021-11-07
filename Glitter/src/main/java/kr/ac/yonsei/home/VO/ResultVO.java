@@ -12,6 +12,7 @@ public class ResultVO {
 	private String careAddrName;
 	private String distance;
 	private String total;
+	private String cnt;
 	
 	public String getYear() {
 		return year;
@@ -78,6 +79,12 @@ public class ResultVO {
 	}
 	public void setTotal(String total) {
 		this.total = total;
+	}
+	public String getCnt() {
+		return cnt;
+	}
+	public void setCnt(String cnt) {
+		this.cnt = cnt;
 	}
 	
 	

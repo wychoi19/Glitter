@@ -20,4 +20,8 @@ public class CodeDAO {
 		return sqlSession.selectList("code.getCodeList", codeVO);
 	}
 
+
+	public List<CodeVO> getResultCalList(ResultVO resultVO) {
+		return sqlSession.selectList("code.getResultCalList", resultVO);
+	}
 }
